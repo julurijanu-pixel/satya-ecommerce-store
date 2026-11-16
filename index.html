@@ -1,249 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SATYA STORE | Modern E-Commerce</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
-    body { background: #f8fafc; color: #1e293b; }
-    .promo { background: linear-gradient(90deg, #4f46e5, #ec4899); color: #fff; text-align: center; padding: 8px; font-size: 13px; font-weight: 700; }
-    header { background: #fff; padding: 14px 5%; display: flex; justify-content: space-between; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 99; box-shadow: 0 2px 15px rgba(0,0,0,0.06); flex-wrap: wrap; }
-    .logo { font-size: 24px; font-weight: 900; color: #0f172a; }
-    .logo span { color: #6366f1; }
-    .search { padding: 9px 16px; border-radius: 20px; border: 1px solid #cbd5e1; width: 250px; outline: none; }
-    .cart-btn { background: #0f172a; color: #fff; border: none; padding: 10px 18px; border-radius: 20px; cursor: pointer; font-weight: 700; }
-    .hero { background: linear-gradient(135deg, #0f172a, #312e81); color: #fff; text-align: center; padding: 50px 20px; }
-    .hero h1 { font-size: 34px; margin-bottom: 10px; }
-    .hero p { color: #cbd5e1; margin-bottom: 20px; }
-    .hero-btn { background: #6366f1; color: #fff; padding: 12px 26px; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-block; }
-    .tabs { display: flex; justify-content: center; gap: 10px; padding: 25px 10px 10px; flex-wrap: wrap; }
-    .tab { padding: 8px 18px; border: 1px solid #cbd5e1; background: #fff; border-radius: 20px; cursor: pointer; font-weight: 600; }
-    .tab.active, .tab:hover { background: #0f172a; color: #fff; }
-    .grid { max-width: 1150px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: 20px; }
-    .card { background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); position: relative; display: flex; flex-direction: column; transition: 0.2s; }
-    .card:hover { transform: translateY(-5px); }
-    .badge { position: absolute; top: 10px; left: 10px; background: #ef4444; color: #fff; font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 5px; z-index: 2; }
-    .img-wrap { position: relative; cursor: pointer; overflow: hidden; height: 215px; background: #e2e8f0; }
-    .img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
-    .card:hover .img-wrap img { transform: scale(1.06); }
-    .view-hint { position: absolute; bottom: 8px; right: 8px; background: rgba(15,23,42,0.75); color: #fff; font-size: 11px; padding: 4px 9px; border-radius: 6px; }
-    .info { padding: 16px; flex: 1; display: flex; flex-direction: column; }
-    .tag { font-size: 11px; color: #6366f1; font-weight: 800; text-transform: uppercase; }
-    .title { font-size: 17px; font-weight: 700; margin: 5px 0; cursor: pointer; }
-    .price { font-size: 19px; font-weight: 800; margin-bottom: 12px; }
-    .price s { font-size: 13px; color: #94a3b8; font-weight: 400; }
-    .add-btn { margin-top: auto; width: 100%; padding: 11px; background: #0f172a; color: #fff; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; }
-    .add-btn:hover { background: #6366f1; }
-
-    /* Product Gallery Modal */
-    .modal-bg { position: fixed; inset: 0; background: rgba(15,23,42,0.75); display: none; align-items: center; justify-content: center; z-index: 300; padding: 15px; }
-    .modal-bg.open { display: flex; }
-    .modal-box { background: #fff; border-radius: 16px; max-width: 720px; width: 100%; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; position: relative; }
-    .modal-close { position: absolute; top: 12px; right: 14px; background: #f1f5f9; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 20px; cursor: pointer; z-index: 5; }
-    .gallery-side { background: #f1f5f9; padding: 16px; display: flex; flex-direction: column; align-items: center; }
-    .main-pic { width: 100%; height: 260px; object-fit: cover; border-radius: 10px; margin-bottom: 12px; }
-    .thumbs { display: flex; gap: 8px; justify-content: center; }
-    .thumbs img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid transparent; }
-    .thumbs img.active { border-color: #6366f1; }
-    .detail-side { padding: 24px; display: flex; flex-direction: column; justify-content: center; }
-    .detail-side h2 { font-size: 22px; margin: 8px 0; }
-    .detail-side p { color: #64748b; font-size: 14px; line-height: 1.5; margin-bottom: 16px; }
-
-    /* Cart Drawer */
-    .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; justify-content: flex-end; z-index: 200; }
-    .overlay.open { display: flex; }
-    .drawer { background: #fff; width: 100%; max-width: 360px; height: 100%; padding: 20px; display: flex; flex-direction: column; }
-    .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; }
-    .pay-btn { width: 100%; padding: 14px; background: #10b981; color: #fff; border: none; border-radius: 8px; font-weight: 700; font-size: 16px; cursor: pointer; margin-top: 10px; }
-    footer { background: #0f172a; color: #94a3b8; text-align: center; padding: 30px; margin-top: 40px; }
-    @media (max-width: 650px) { .modal-box { grid-template-columns: 1fr; } .main-pic { height: 200px; } }
-  </style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SATYA STORE</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif}
+body{background:#f8fafc;color:#1e293b}
+.bar{background:linear-gradient(90deg,#4f46e5,#ec4899);color:#fff;text-align:center;padding:8px;font-size:13px;font-weight:700}
+header{background:#fff;padding:14px 5%;display:flex;justify-content:space-between;align-items:center;gap:10px;position:sticky;top:0;z-index:99;box-shadow:0 2px 12px rgba(0,0,0,.06);flex-wrap:wrap}
+.logo{font-size:24px;font-weight:900;color:#0f172a}.logo span{color:#6366f1}
+input{padding:9px 15px;border-radius:20px;border:1px solid #cbd5e1;width:220px;outline:none}
+.cbtn{background:#0f172a;color:#fff;border:none;padding:10px 18px;border-radius:20px;cursor:pointer;font-weight:700}
+.hero{background:linear-gradient(135deg,#0f172a,#312e81);color:#fff;text-align:center;padding:42px 20px}
+.tabs{display:flex;justify-content:center;gap:8px;padding:18px 10px 5px;flex-wrap:wrap}
+.tab{padding:8px 18px;border:1px solid #cbd5e1;background:#fff;border-radius:20px;cursor:pointer;font-weight:600}
+.tab.on{background:#0f172a;color:#fff}
+.grid{max-width:1150px;margin:0 auto;padding:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,.06);position:relative;display:flex;flex-direction:column}
+.off{position:absolute;top:10px;left:10px;background:#ef4444;color:#fff;font-size:11px;font-weight:800;padding:4px 8px;border-radius:5px;z-index:2}
+.wrap{position:relative;cursor:pointer;height:200px;background:#e2e8f0}
+.wrap img{width:100%;height:100%;object-fit:cover}
+.hint{position:absolute;bottom:8px;right:8px;background:rgba(15,23,42,.8);color:#fff;font-size:11px;padding:4px 8px;border-radius:6px}
+.info{padding:15px;flex:1;display:flex;flex-direction:column}
+.tag{font-size:11px;color:#6366f1;font-weight:800;text-transform:uppercase}
+.title{font-size:17px;font-weight:700;margin:5px 0;cursor:pointer}
+.price{font-size:19px;font-weight:800;margin-bottom:12px}.price s{font-size:13px;color:#94a3b8;font-weight:400}
+.abtn{margin-top:auto;width:100%;padding:11px;background:#0f172a;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer}
+.mbg{position:fixed;inset:0;background:rgba(15,23,42,.75);display:none;align-items:center;justify-content:center;z-index:300;padding:15px}.mbg.on{display:flex}
+.mbox{background:#fff;border-radius:16px;max-width:650px;width:100%;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;position:relative}
+.mcls{position:absolute;top:10px;right:12px;background:#f1f5f9;border:none;width:30px;height:30px;border-radius:50%;font-size:18px;cursor:pointer}
+.gside{background:#f1f5f9;padding:15px;text-align:center}
+.mpic{width:100%;height:220px;object-fit:cover;border-radius:10px;margin-bottom:10px}
+.thms{display:flex;gap:8px;justify-content:center}
+.thms img{width:55px;height:55px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid transparent}
+.thms img.on{border-color:#6366f1}
+.dside{padding:20px;display:flex;flex-direction:column;justify-content:center}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;justify-content:flex-end;z-index:200}.ov.on{display:flex}
+.drw{background:#fff;width:100%;max-width:340px;height:100%;padding:20px;display:flex;flex-direction:column}
+.ci{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eee}
+.pbtn{width:100%;padding:13px;background:#10b981;color:#fff;border:none;border-radius:8px;font-weight:700;font-size:16px;cursor:pointer;margin-top:10px}
+footer{background:#0f172a;color:#94a3b8;text-align:center;padding:24px;margin-top:30px}
+@media(max-width:650px){.mbox{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-  <div class="promo">🎉 GRAND OFFER: Click any product photo to view more angles & gallery!</div>
-  <header>
-    <div class="logo">SATYA STORE<span>.</span></div>
-    <input class="search" id="search" placeholder="🔍 Search products..." onkeyup="searchProducts()" />
-    <button class="cart-btn" onclick="toggleCart()">🛒 Bag (<span id="count">0</span>)</button>
-  </header>
-
-  <section class="hero">
-    <h1>Welcome to Satya Store</h1>
-    <p>Tap on any product image to explore multiple photos & details</p>
-    <a href="#grid" class="hero-btn">Explore Collection ↓</a>
-  </section>
-
-  <div class="tabs">
-    <button class="tab active" onclick="filterProducts('all', this)">All</button>
-    <button class="tab" onclick="filterProducts('tech', this)">Tech</button>
-    <button class="tab" onclick="filterProducts('fashion', this)">Fashion</button>
-    <button class="tab" onclick="filterProducts('home', this)">Home</button>
+<div class="bar">🎉 GRAND OFFER: Click any product photo to see more angles!</div>
+<header>
+  <div class="logo">SATYA STORE<span>.</span></div>
+  <input id="q" placeholder="🔍 Search products..." onkeyup="srch()">
+  <button class="cbtn" onclick="tog()">🛒 Bag (<span id="cnt">0</span>)</button>
+</header>
+<div class="hero"><h1>Welcome to Satya Store</h1><p>Click any photo to explore multiple angles & details</p></div>
+<div class="tabs">
+  <button class="tab on" onclick="flt('all',this)">All</button>
+  <button class="tab" onclick="flt('tech',this)">Tech</button>
+  <button class="tab" onclick="flt('fashion',this)">Fashion</button>
+  <button class="tab" onclick="flt('home',this)">Home</button>
+</div>
+<div class="grid" id="g"></div>
+<div class="mbg" id="m" onclick="if(event.target===this)cls()">
+  <div class="mbox">
+    <button class="mcls" onclick="cls()">&times;</button>
+    <div class="gside"><img id="mp" class="mpic"><div class="thms" id="mt"></div></div>
+    <div class="dside"><span class="tag" id="mc"></span><h2 id="mn" style="margin:8px 0"></h2><div class="price" id="mpr"></div><p id="md" style="color:#64748b;font-size:14px;margin-bottom:15px"></p><button class="abtn" id="ma">+ Add to Bag</button></div>
   </div>
-
-  <main class="grid" id="grid"></main>
-
-  <!-- Gallery Modal -->
-  <div class="modal-bg" id="modal">
-    <div class="modal-box">
-      <button class="modal-close" onclick="closeModal()">&times;</button>
-      <div class="gallery-side">
-        <img id="m-main" class="main-pic" src="" alt="Product">
-        <div class="thumbs" id="m-thumbs"></div>
-      </div>
-      <div class="detail-side">
-        <span class="tag" id="m-cat"></span>
-        <h2 id="m-title"></h2>
-        <div class="price" id="m-price"></div>
-        <p id="m-desc"></p>
-        <button class="add-btn" id="m-add">+ Add to Bag</button>
-      </div>
-    </div>
+</div>
+<div class="ov" id="ov">
+  <div class="drw">
+    <div style="display:flex;justify-content:space-between;margin-bottom:15px"><h2>Your Bag</h2><button onclick="tog()" style="font-size:22px;border:none;background:none;cursor:pointer">&times;</button></div>
+    <div id="it" style="flex:1;overflow-y:auto"></div>
+    <div style="border-top:1px solid #eee;padding-top:12px"><div style="display:flex;justify-content:space-between;font-size:18px;font-weight:800"><span>Total:</span><span>₹<span id="tot">0</span></span></div><button class="pbtn" onclick="pay()">Place Order →</button></div>
   </div>
-
-  <!-- Cart Drawer -->
-  <div class="overlay" id="overlay">
-    <div class="drawer">
-      <div style="display:flex;justify-content:space-between;margin-bottom:15px;">
-        <h2>Your Bag</h2>
-        <button onclick="toggleCart()" style="font-size:22px;border:none;background:none;cursor:pointer;">&times;</button>
-      </div>
-      <div id="items" style="flex:1;overflow-y:auto;"></div>
-      <div style="border-top:1px solid #eee;padding-top:12px;">
-        <div style="display:flex;justify-content:space-between;font-size:18px;font-weight:800;">
-          <span>Total:</span><span>₹<span id="total">0</span></span>
-        </div>
-        <button class="pay-btn" onclick="checkout()">Place Order →</button>
-      </div>
-    </div>
-  </div>
-
-  <footer>
-    <h3 style="color:#fff;">SATYA STORE.</h3>
-    <p>© 2026 Satya Store • Pan-India Delivery</p>
-  </footer>
-
-  <script>
-    const products = [
-      {
-        id: 1, name: "Studio ANC Headphones", cat: "tech", price: 12999, old: 15999, off: "19% OFF",
-        desc: "Active noise-canceling wireless over-ear headphones with 40-hour battery life and deep bass.",
-        imgs: [
-          "https://pexels.com",
-          "https://pexels.com",
-          "https://pexels.com"
-        ]
-      },
-      {
-        id: 2, name: "Royal Chronos Watch", cat: "fashion", price: 8499, old: 10999, off: "23% OFF",
-        desc: "Sapphire glass stainless steel luxury watch with genuine leather strap and water resistance.",
-        imgs: [
-          "https://pexels.com",
-          "https://pexels.com",
-          "https://pexels.com"
-        ]
-      },
-      {
-        id: 3, name: "Ambient Smart Lamp", cat: "home", price: 3499, old: 4499, off: "22% OFF",
-        desc: "Minimalist warm LED desk lamp with 3 brightness modes and touch control.",
-        imgs: [
-          "https://pexels.com",
-          "https://pexels.com",
-          "https://pexels.com"
-        ]
-      },
-      {
-        id: 4, name: "Pro Mechanical Keyboard", cat: "tech", price: 6999, old: 8999, off: "22% OFF",
-        desc: "Compact wireless mechanical keyboard with tactile switches and warm backlighting.",
-        imgs: [
-          "https://pexels.com",
-          "https://pexels.com",
-                {
-        id: 5, name: "Urban Travel Backpack", cat: "fashion", price: 4299, old: 5499, off: "21% OFF",
-        desc: "Water-resistant daily commute backpack with padded 16-inch laptop sleeve.",
-        imgs: [
-          "https://pexels.com",
-          "https://pexels.com",
-          "https://pexels.com"
-        ]
-      },
-      {
-        id: 6, name: "Classic Aviator Sunglasses", cat: "fashion", price: 2499, old: 3299, off: "24% OFF",
-        desc: "UV400 polarized lenses with lightweight gold metal frame.",
-        imgs: [
-          "https://pexels.com",
-          "https://pexels.com",
-          "https://pexels.com"
-        ]
-      }
-    ];
-
-    let cart = [];
-
-    function render(list) {
-      document.getElementById("grid").innerHTML = list.map(p => `
-        <div class="card">
-          <span class="badge">${p.off}</span>
-          <div class="img-wrap" onclick="openModal(${p.id})">
-            <img src="${p.imgs}" alt="${p.name}" onerror="this.src='https://placehold.co{encodeURIComponent(p.name)}'">
-            <span class="view-hint">📷 +${p.imgs.length} Photos</span>
-          </div>
-          <div class="info">
-            <div class="tag">${p.cat} • ⭐ 4.9</div>
-            <div class="title" onclick="openModal(${p.id})">${p.name}</div>
-            <div class="price">₹${p.price.toLocaleString()} <s>₹${p.old.toLocaleString()}</s></div>
-            <button class="add-btn" onclick="add(${p.id})">+ Add to Bag</button>
-          </div>
-        </div>
-      `).join("");
-    }
-
-    function openModal(id) {
-      const p = products.find(x => x.id === id);
-      document.getElementById("m-main").src = p.imgs;
-      document.getElementById("m-cat").innerText = p.cat + " • ⭐ 4.9";
-      document.getElementById("m-title").innerText = p.name;
-      document.getElementById("m-price").innerHTML = `₹${p.price.toLocaleString()} <s>₹${p.old.toLocaleString()}</s>`;
-      document.getElementById("m-desc").innerText = p.desc;
-      document.getElementById("m-add").onclick = () => { add(p.id); closeModal(); };
-      document.getElementById("m-thumbs").innerHTML = p.imgs.map((src, i) => `
-        <img src="${src}" class="${i === 0 ? 'active' : ''}" onclick="switchImg(this, '${src}')">
-      `).join("");
-      document.getElementById("modal").classList.add("open");
-    }
-
-    function switchImg(el, src) {
-      document.getElementById("m-main").src = src;
-      document.querySelectorAll("#m-thumbs img").forEach(img => img.classList.remove("active"));
-      el.classList.add("active");
-    }
-
-    function closeModal() { document.getElementById("modal").classList.remove("open"); }
-    function filterProducts(cat, btn) {
-      document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-      btn.classList.add("active");
-      render(cat === "all" ? products : products.filter(p => p.cat === cat));
-    }
-    function searchProducts() {
-      const q = document.getElementById("search").value.toLowerCase();
-      render(products.filter(p => p.name.toLowerCase().includes(q)));
-    }
-    function add(id) { cart.push(products.find(p => p.id === id)); update(); }
-    function remove(i) { cart.splice(i, 1); update(); }
-    function update() {
-      document.getElementById("count").innerText = cart.length;
-      document.getElementById("items").innerHTML = cart.length === 0 ? "<p>Bag is empty</p>" :
-        cart.map((x, i) => `<div class="cart-item"><div><b>${x.name}</b><br><small>₹${x.price.toLocaleString()}</small></div><button onclick="remove(${i})" style="color:red;border:none;background:none;cursor:pointer;">Remove</button></div>`).join("");
-      document.getElementById("total").innerText = cart.reduce((a, b) => a + b.price, 0).toLocaleString();
-    }
-    function toggleCart() { document.getElementById("overlay").classList.toggle("open"); }
-    function checkout() {
-      if (!cart.length) return alert("Bag is empty!");
-      alert("🎉 Order Confirmed at SATYA STORE!\nTotal: ₹" + document.getElementById("total").innerText);
-      cart = []; update(); toggleCart();
-    }
-    render(products);
-  </script>
+</div>
+<footer><h3 style="color:#fff">SATYA STORE.</h3><p>© 2026 Satya Store • Pan-India Delivery</p></footer>
+<script>
+const P=[
+  {id:1,n:"Studio ANC Headphones",c:"tech",p:12999,o:15999,d:"19% OFF",ds:"Wireless noise-canceling headphones with 40hr battery.",imgs:["https://picsum.photos","https://picsum.photos","https://picsum.photos"]},
+  {id:2,n:"Royal Chronos Watch",c:"fashion",p:8499,o:10999,d:"23% OFF",ds:"Luxury stainless steel watch with genuine leather strap.",imgs:["https://picsum.photos","https://picsum.photos","https://picsum.photos"]},
+  {id:3,n:"Ambient Smart Lamp",c:"home",p:3499,o:4499,d:"22% OFF",ds:"Minimalist warm LED desk lamp with touch brightness.",imgs:["https://picsum.photos","https://picsum.photos","https://picsum.photos"]},
+  {id:4,n:"Pro Mechanical Keyboard",c:"tech",p:6999,o:8999,d:"22% OFF",ds:"Wireless mechanical keyboard with tactile switches.",imgs:["https://picsum.photos","https://picsum.photos","https://picsum.photos"]},
+  {id:5,n:"Urban Travel Backpack",c:"fashion",p:4299,o:5499,d:"21% OFF",ds:"Water-resistant daily backpack with laptop sleeve.",imgs:["https://picsum.photos","https://picsum.photos","https://picsum.photos"]},
+  {id:6,n:"Classic Aviator Glasses",c:"fashion",p:2499,o:3299,d:"24% OFF",ds:"UV400 polarized lenses with lightweight gold frame.",imgs:["https://picsum.photos","https://picsum.photos","https://picsum.photos"]}
+];
+let C=[];
+function show(L){
+  document.getElementById("g").innerHTML=L.map(x=>'<div class="card"><span class="off">'+x.d+'</span><div class="wrap" onclick="opn('+x.id+')"><img src="'+x.imgs[0]+'"><span class="hint">📷 +3 Photos</span></div><div class="info"><div class="tag">'+x.c+' • ⭐ 4.9</div><div class="title" onclick="opn('+x.id+')">'+x.n+'</div><div class="price">₹'+x.p.toLocaleString()+' <s>₹'+x.o.toLocaleString()+'</s></div><button class="abtn" onclick="add('+x.id+')">+ Add to Bag</button></div></div>').join("");
+}
+function opn(id){
+  let x=P.find(a=>a.id===id);
+  document.getElementById("mp").src=x.imgs[0];
+  document.getElementById("mc").innerText=x.c+" • ⭐ 4.9";
+  document.getElementById("mn").innerText=x.n;
+  document.getElementById("mpr").innerHTML="₹"+x.p.toLocaleString()+" <s>₹"+x.o.toLocaleString()+"</s>";
+  document.getElementById("md").innerText=x.ds;
+  document.getElementById("ma").onclick=function(){add(x.id);cls()};
+  document.getElementById("mt").innerHTML=x.imgs.map((s,i)=>'<img src="'+s+'" class="'+(i===0?'on':'')+'" onclick="sw(this,\''+s+'\')">').join("");
+  document.getElementById("m").classList.add("on");
+}
+function sw(el,s){document.getElementById("mp").src=s;document.querySelectorAll("#mt img").forEach(i=>i.classList.remove("on"));el.classList.add("on")}
+function cls(){document.getElementById("m").classList.remove("on")}
+function flt(c,b){document.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));b.classList.add("on");show(c==="all"?P:P.filter(x=>x.c===c))}
+function srch(){let v=document.getElementById("q").value.toLowerCase();show(P.filter(x=>x.n.toLowerCase().includes(v)))}
+function add(id){C.push(P.find(x=>x.id===id));upd()}
+function rem(i){C.splice(i,1);upd()}
+function upd(){
+  document.getElementById("cnt").innerText=C.length;
+  document.getElementById("it").innerHTML=C.length?C.map((x,i)=>'<div class="ci"><div><b>'+x.n+'</b><br><small>₹'+x.p.toLocaleString()+'</small></div><button onclick="rem('+i+')" style="color:red;border:none;background:none;cursor:pointer">Remove</button></div>').join(""):"<p>Bag is empty</p>";
+  document.getElementById("tot").innerText=C.reduce((a,b)=>a+b.p,0).toLocaleString();
+}
+function tog(){document.getElementById("ov").classList.toggle("on")}
+function pay(){if(!C.length)return alert("Bag is empty!");alert("🎉 Order Confirmed at SATYA STORE!\nTotal: ₹"+document.getElementById("tot").innerText);C=[];upd();tog()}
+show(P);
+</script>
 </body>
 </html>
-

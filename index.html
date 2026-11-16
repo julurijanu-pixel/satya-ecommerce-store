@@ -18,7 +18,7 @@ input{padding:9px 15px;border-radius:20px;border:1px solid #cbd5e1;width:220px;o
 .grid{max-width:1150px;margin:0 auto;padding:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
 .card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,.06);position:relative;display:flex;flex-direction:column}
 .off{position:absolute;top:10px;left:10px;background:#ef4444;color:#fff;font-size:11px;font-weight:800;padding:4px 8px;border-radius:5px;z-index:2}
-.wrap{position:relative;cursor:pointer;height:200px;background:#e2e8f0}
+.wrap{position:relative;cursor:pointer;height:210px;background:#e2e8f0}
 .wrap img{width:100%;height:100%;object-fit:cover}
 .hint{position:absolute;bottom:8px;right:8px;background:rgba(15,23,42,.8);color:#fff;font-size:11px;padding:4px 8px;border-radius:6px}
 .info{padding:15px;flex:1;display:flex;flex-direction:column}
@@ -75,12 +75,10 @@ footer{background:#0f172a;color:#94a3b8;text-align:center;padding:24px;margin-to
 <footer><h3 style="color:#fff">SATYA STORE.</h3><p>© 2026 Satya Store • Pan-India Delivery</p></footer>
 <script>
 const P=[
-  {id:1,n:"Studio ANC Headphones",c:"tech",p:12999,o:15999,d:"19% OFF",ds:"Wireless noise-canceling headphones with 40hr battery.",imgs:["https://picsum.photos","https://picsum.photos","https://picsum.photos"]},
-  {id:2,n:"Royal Chronos Watch",c:"fashion",p:8499,o:10999,d:"23% OFF",ds:"Luxury stainless steel watch with genuine leather strap.",imgs:["https://picsum.photos","https://picsum.photos","https://picsum.photos"]},
-  {id:3,n:"Ambient Smart Lamp",c:"home",p:3499,o:4499,d:"22% OFF",ds:"Minimalist warm LED desk lamp with touch brightness.",imgs:["https://picsum.photos","https://picsum.photos","https://picsum.photos"]},
-  {id:4,n:"Pro Mechanical Keyboard",c:"tech",p:6999,o:8999,d:"22% OFF",ds:"Wireless mechanical keyboard with tactile switches.",imgs:["https://picsum.photos","https://picsum.photos","https://picsum.photos"]},
-  {id:5,n:"Urban Travel Backpack",c:"fashion",p:4299,o:5499,d:"21% OFF",ds:"Water-resistant daily backpack with laptop sleeve.",imgs:["https://picsum.photos","https://picsum.photos","https://picsum.photos"]},
-  {id:6,n:"Classic Aviator Glasses",c:"fashion",p:2499,o:3299,d:"24% OFF",ds:"UV400 polarized lenses with lightweight gold frame.",imgs:["https://picsum.photos","https://picsum.photos","https://picsum.photos"]}
+  {id:1,n:"Studio Headphones",c:"tech",p:12999,o:15999,d:"19% OFF",ds:"Wireless noise-canceling headphones.",imgs:["https://wikimedia.org","https://wikimedia.org","https://wikimedia.org"]},
+  {id:2,n:"Luxury Gold Watch",c:"fashion",p:8499,o:10999,d:"23% OFF",ds:"Classic stainless steel watch with leather strap.",imgs:["https://wikimedia.org","https://wikimedia.org","https://wikimedia.org"]},
+  {id:3,n:"Modern Desk Lamp",c:"home",p:3499,o:4499,d:"22% OFF",ds:"Minimalist LED desk lamp with adjustable neck.",imgs:["https://wikimedia.org","https://wikimedia.org","https://wikimedia.org"]},
+  {id:4,n:"Mechanical Keyboard",c:"tech",p:6999,o:8999,d:"22% OFF",ds:"Tactile wireless mechanical keyboard.",imgs:["https://wikimedia.org","https://wikimedia.org","https://wikimedia.org"]}
 ];
 let C=[];
 function show(L){
@@ -111,6 +109,3 @@ function upd(){
 function tog(){document.getElementById("ov").classList.toggle("on")}
 function pay(){if(!C.length)return alert("Bag is empty!");alert("🎉 Order Confirmed at SATYA STORE!\nTotal: ₹"+document.getElementById("tot").innerText);C=[];upd();tog()}
 show(P);
-</script>
-</body>
-</html>

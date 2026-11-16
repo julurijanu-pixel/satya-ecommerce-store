@@ -18,9 +18,9 @@ input{padding:9px 15px;border-radius:20px;border:1px solid #cbd5e1;width:220px;o
 .grid{max-width:1150px;margin:0 auto;padding:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
 .card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,.06);position:relative;display:flex;flex-direction:column}
 .off{position:absolute;top:10px;left:10px;background:#ef4444;color:#fff;font-size:11px;font-weight:800;padding:4px 8px;border-radius:5px;z-index:2}
-.wrap{position:relative;cursor:pointer;height:210px;background:#e2e8f0}
+.wrap{position:relative;cursor:pointer;height:200px}
 .wrap img{width:100%;height:100%;object-fit:cover}
-.hint{position:absolute;bottom:8px;right:8px;background:rgba(15,23,42,.8);color:#fff;font-size:11px;padding:4px 8px;border-radius:6px}
+.hint{position:absolute;bottom:8px;right:8px;background:rgba(15,23,42,.85);color:#fff;font-size:11px;padding:4px 8px;border-radius:6px}
 .info{padding:15px;flex:1;display:flex;flex-direction:column}
 .tag{font-size:11px;color:#6366f1;font-weight:800;text-transform:uppercase}
 .title{font-size:17px;font-weight:700;margin:5px 0;cursor:pointer}
@@ -44,13 +44,13 @@ footer{background:#0f172a;color:#94a3b8;text-align:center;padding:24px;margin-to
 </style>
 </head>
 <body>
-<div class="bar">🎉 GRAND OFFER: Click any product photo to see more angles!</div>
+<div class="bar">🎉 GRAND OFFER: Click any product photo to view different colors & angles!</div>
 <header>
   <div class="logo">SATYA STORE<span>.</span></div>
   <input id="q" placeholder="🔍 Search products..." onkeyup="srch()">
   <button class="cbtn" onclick="tog()">🛒 Bag (<span id="cnt">0</span>)</button>
 </header>
-<div class="hero"><h1>Welcome to Satya Store</h1><p>Click any photo to explore multiple angles & details</p></div>
+<div class="hero"><h1>Welcome to Satya Store</h1><p>Click any photo to explore multiple colors & details</p></div>
 <div class="tabs">
   <button class="tab on" onclick="flt('all',this)">All</button>
   <button class="tab" onclick="flt('tech',this)">Tech</button>
@@ -74,15 +74,18 @@ footer{background:#0f172a;color:#94a3b8;text-align:center;padding:24px;margin-to
 </div>
 <footer><h3 style="color:#fff">SATYA STORE.</h3><p>© 2026 Satya Store • Pan-India Delivery</p></footer>
 <script>
+function pic(bg,ico,lbl){return "data:image/svg+xml;utf8,"+encodeURIComponent('<svg xmlns="http://w3.org" width="500" height="400"><rect width="500" height="400" fill="'+bg+'"/><text x="50%" y="48%" font-size="120" text-anchor="middle" dominant-baseline="middle">'+ico+'</text><text x="50%" y="82%" font-family="sans-serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">'+lbl+'</text></svg>')}
 const P=[
-  {id:1,n:"Studio Headphones",c:"tech",p:12999,o:15999,d:"19% OFF",ds:"Wireless noise-canceling headphones.",imgs:["https://wikimedia.org","https://wikimedia.org","https://wikimedia.org"]},
-  {id:2,n:"Luxury Gold Watch",c:"fashion",p:8499,o:10999,d:"23% OFF",ds:"Classic stainless steel watch with leather strap.",imgs:["https://wikimedia.org","https://wikimedia.org","https://wikimedia.org"]},
-  {id:3,n:"Modern Desk Lamp",c:"home",p:3499,o:4499,d:"22% OFF",ds:"Minimalist LED desk lamp with adjustable neck.",imgs:["https://wikimedia.org","https://wikimedia.org","https://wikimedia.org"]},
-  {id:4,n:"Mechanical Keyboard",c:"tech",p:6999,o:8999,d:"22% OFF",ds:"Tactile wireless mechanical keyboard.",imgs:["https://wikimedia.org","https://wikimedia.org","https://wikimedia.org"]}
+  {id:1,n:"Studio ANC Headphones",c:"tech",p:12999,o:15999,d:"19% OFF",ds:"Active noise-canceling headphones with 40hr battery.",imgs:[pic("#e0e7ff","🎧","Midnight Blue Edition"),pic("#fce7f3","🎧","Rose Pink Edition"),pic("#e2e8f0","🎧","Matte Silver Edition")]},
+  {id:2,n:"Royal Chronos Watch",c:"fashion",p:8499,o:10999,d:"23% OFF",ds:"Sapphire glass luxury watch with genuine leather strap.",imgs:[pic("#fef3c7","⌚","Classic Gold"),pic("#dbeafe","⌚","Ocean Blue Dial"),pic("#f1f5f9","⌚","Platinum Steel")]},
+  {id:3,n:"Ambient Smart Lamp",c:"home",p:3499,o:4499,d:"22% OFF",ds:"Minimalist warm LED desk lamp with touch brightness.",imgs:[pic("#dcfce7","🛋️","Warm Sunset Mode"),pic("#fef9c3","💡","Bright Study Mode"),pic("#e0f2fe","🌙","Cool Night Mode")]},
+  {id:4,n:"Pro Mechanical Keyboard",c:"tech",p:6999,o:8999,d:"22% OFF",ds:"Wireless mechanical keyboard with tactile switches.",imgs:[pic("#f3e8ff","⌨️","RGB Gaming Mode"),pic("#e2e8f0","⌨️","Office White Edition"),pic("#ffedd5","⌨️","Retro Keycaps")]},
+  {id:5,n:"Urban Travel Backpack",c:"fashion",p:4299,o:5499,d:"21% OFF",ds:"Water-resistant daily backpack with laptop sleeve.",imgs:[pic("#ffe4e6","🎒","Crimson Red"),pic("#dbeafe","🎒","Navy Explorer"),pic("#dcfce7","🎒","Olive Green")]},
+  {id:6,n:"Classic Aviator Glasses",c:"fashion",p:2499,o:3299,d:"24% OFF",ds:"UV400 polarized lenses with lightweight gold frame.",imgs:[pic("#fae8ff","🕶️","Gold Frame"),pic("#e0f2fe","🕶️","Blue Mirror Lens"),pic("#fef3c7","🕶️","Amber Tint")]}
 ];
 let C=[];
 function show(L){
-  document.getElementById("g").innerHTML=L.map(x=>'<div class="card"><span class="off">'+x.d+'</span><div class="wrap" onclick="opn('+x.id+')"><img src="'+x.imgs[0]+'"><span class="hint">📷 +3 Photos</span></div><div class="info"><div class="tag">'+x.c+' • ⭐ 4.9</div><div class="title" onclick="opn('+x.id+')">'+x.n+'</div><div class="price">₹'+x.p.toLocaleString()+' <s>₹'+x.o.toLocaleString()+'</s></div><button class="abtn" onclick="add('+x.id+')">+ Add to Bag</button></div></div>').join("");
+  document.getElementById("g").innerHTML=L.map(x=>'<div class="card"><span class="off">'+x.d+'</span><div class="wrap" onclick="opn('+x.id+')"><img src="'+x.imgs[0]+'"><span class="hint">📷 +3 Colors</span></div><div class="info"><div class="tag">'+x.c+' • ⭐ 4.9</div><div class="title" onclick="opn('+x.id+')">'+x.n+'</div><div class="price">₹'+x.p.toLocaleString()+' <s>₹'+x.o.toLocaleString()+'</s></div><button class="abtn" onclick="add('+x.id+')">+ Add to Bag</button></div></div>').join("");
 }
 function opn(id){
   let x=P.find(a=>a.id===id);
@@ -104,7 +107,7 @@ function rem(i){C.splice(i,1);upd()}
 function upd(){
   document.getElementById("cnt").innerText=C.length;
   document.getElementById("it").innerHTML=C.length?C.map((x,i)=>'<div class="ci"><div><b>'+x.n+'</b><br><small>₹'+x.p.toLocaleString()+'</small></div><button onclick="rem('+i+')" style="color:red;border:none;background:none;cursor:pointer">Remove</button></div>').join(""):"<p>Bag is empty</p>";
-  document.getElementById("tot").innerText=C.reduce((a,b)=>a+b.p,0).toLocaleString();
+document.getElementById("tot").innerText=C.reduce((a,b)=>a+b.p,0).toLocaleString();
 }
 function tog(){document.getElementById("ov").classList.toggle("on")}
 function pay(){if(!C.length)return alert("Bag is empty!");alert("🎉 Order Confirmed at SATYA STORE!\nTotal: ₹"+document.getElementById("tot").innerText);C=[];upd();tog()}

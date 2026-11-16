@@ -2,113 +2,130 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SATYA STORE</title>
+<title>SATYA STORE | Luxury Store</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif}
-body{background:#f8fafc;color:#1e293b}
-.bar{background:linear-gradient(90deg,#4f46e5,#ec4899);color:#fff;text-align:center;padding:8px;font-size:13px;font-weight:700}
-header{background:#fff;padding:14px 5%;display:flex;justify-content:space-between;align-items:center;gap:10px;position:sticky;top:0;z-index:99;box-shadow:0 2px 12px rgba(0,0,0,.06);flex-wrap:wrap}
-.logo{font-size:24px;font-weight:900;color:#0f172a}.logo span{color:#6366f1}
-input{padding:9px 15px;border-radius:20px;border:1px solid #cbd5e1;width:220px;outline:none}
-.cbtn{background:#0f172a;color:#fff;border:none;padding:10px 18px;border-radius:20px;cursor:pointer;font-weight:700}
-.hero{background:linear-gradient(135deg,#0f172a,#312e81);color:#fff;text-align:center;padding:42px 20px}
-.tabs{display:flex;justify-content:center;gap:8px;padding:18px 10px 5px;flex-wrap:wrap}
-.tab{padding:8px 18px;border:1px solid #cbd5e1;background:#fff;border-radius:20px;cursor:pointer;font-weight:600}
-.tab.on{background:#0f172a;color:#fff}
-.grid{max-width:1150px;margin:0 auto;padding:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
-.card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,.06);position:relative;display:flex;flex-direction:column}
-.off{position:absolute;top:10px;left:10px;background:#ef4444;color:#fff;font-size:11px;font-weight:800;padding:4px 8px;border-radius:5px;z-index:2}
-.wrap{position:relative;cursor:pointer;height:200px}
-.wrap img{width:100%;height:100%;object-fit:cover}
-.hint{position:absolute;bottom:8px;right:8px;background:rgba(15,23,42,.85);color:#fff;font-size:11px;padding:4px 8px;border-radius:6px}
-.info{padding:15px;flex:1;display:flex;flex-direction:column}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',system-ui,sans-serif}
+body{background:#f1f5f9;color:#0f172a}
+.bar{background:linear-gradient(90deg,#4f46e5,#9333ea,#ec4899);color:#fff;text-align:center;padding:9px;font-size:13px;font-weight:700;letter-spacing:.5px}
+header{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);padding:15px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px;position:sticky;top:0;z-index:99;box-shadow:0 4px 20px rgba(0,0,0,.05);flex-wrap:wrap}
+.logo{font-size:26px;font-weight:900;letter-spacing:-0.5px}.logo span{color:#6366f1}
+input{padding:10px 18px;border-radius:25px;border:1px solid #cbd5e1;width:240px;outline:none;background:#f8fafc}
+input:focus{border-color:#6366f1;background:#fff}
+.cbtn{background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;border:none;padding:10px 20px;border-radius:25px;cursor:pointer;font-weight:700;box-shadow:0 4px 12px rgba(15,23,42,.2)}
+.hero{background:radial-gradient(circle at top right,#312e81,#0f172a 75%);color:#fff;text-align:center;padding:55px 20px}
+.hero h1{font-size:36px;font-weight:800;margin-bottom:10px}
+.hero p{color:#cbd5e1;font-size:16px;margin-bottom:20px}
+.tabs{display:flex;justify-content:center;gap:10px;padding:24px 10px 8px;flex-wrap:wrap}
+.tab{padding:9px 20px;border:none;background:#fff;border-radius:25px;cursor:pointer;font-weight:700;color:#475569;box-shadow:0 2px 8px rgba(0,0,0,.05);transition:.2s}
+.tab.on,.tab:hover{background:#6366f1;color:#fff;transform:translateY(-2px)}
+.grid{max-width:1150px;margin:0 auto;padding:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:22px}
+.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,.05);position:relative;display:flex;flex-direction:column;transition:.3s}
+.card:hover{transform:translateY(-8px);box-shadow:0 20px 35px rgba(99,102,241,.15)}
+.off{position:absolute;top:12px;left:12px;background:#ef4444;color:#fff;font-size:11px;font-weight:800;padding:4px 10px;border-radius:8px;z-index:2}
+.wish{position:absolute;top:10px;right:12px;background:#fff;border:none;width:34px;height:34px;border-radius:50%;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.1);font-size:16px;z-index:2}
+.pic{height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative;transition:.3s}
+.pic span.ico{font-size:78px;filter:drop-shadow(0 10px 15px rgba(0,0,0,.15));transition:.3s}
+.card:hover .pic span.ico{transform:scale(1.12)}
+.hint{position:absolute;bottom:10px;background:rgba(255,255,255,.85);color:#0f172a;font-size:11px;font-weight:700;padding:4px 10px;border-radius:12px}
+.info{padding:18px;flex:1;display:flex;flex-direction:column}
 .tag{font-size:11px;color:#6366f1;font-weight:800;text-transform:uppercase}
-.title{font-size:17px;font-weight:700;margin:5px 0;cursor:pointer}
-.price{font-size:19px;font-weight:800;margin-bottom:12px}.price s{font-size:13px;color:#94a3b8;font-weight:400}
-.abtn{margin-top:auto;width:100%;padding:11px;background:#0f172a;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer}
-.mbg{position:fixed;inset:0;background:rgba(15,23,42,.75);display:none;align-items:center;justify-content:center;z-index:300;padding:15px}.mbg.on{display:flex}
-.mbox{background:#fff;border-radius:16px;max-width:650px;width:100%;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;position:relative}
-.mcls{position:absolute;top:10px;right:12px;background:#f1f5f9;border:none;width:30px;height:30px;border-radius:50%;font-size:18px;cursor:pointer}
-.gside{background:#f1f5f9;padding:15px;text-align:center}
-.mpic{width:100%;height:220px;object-fit:cover;border-radius:10px;margin-bottom:10px}
-.thms{display:flex;gap:8px;justify-content:center}
-.thms img{width:55px;height:55px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid transparent}
-.thms img.on{border-color:#6366f1}
-.dside{padding:20px;display:flex;flex-direction:column;justify-content:center}
+.title{font-size:18px;font-weight:700;margin:6px 0;cursor:pointer}
+.price{font-size:20px;font-weight:800;margin-bottom:14px}.price s{font-size:13px;color:#94a3b8;font-weight:400}
+.abtn{margin-top:auto;width:100%;padding:12px;background:#0f172a;color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer;transition:.2s}
+.abtn:hover{background:#6366f1}
+.mbg{position:fixed;inset:0;background:rgba(15,23,42,.75);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:300;padding:15px}.mbg.on{display:flex}
+.mbox{background:#fff;border-radius:20px;max-width:620px;width:100%;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;position:relative}
+.mcls{position:absolute;top:12px;right:14px;background:#f1f5f9;border:none;width:32px;height:32px;border-radius:50%;font-size:20px;cursor:pointer}
+.gside{padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#f8fafc}
+.mpic{width:100%;height:200px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:85px;margin-bottom:12px;transition:.3s}
+.mpic small{font-size:13px;font-weight:700;color:#1e293b;margin-top:8px;background:rgba(255,255,255,.8);padding:3px 10px;border-radius:10px}
+.thms{display:flex;gap:10px}
+.thm{width:54px;height:54px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:26px;cursor:pointer;border:2px solid #cbd5e1}
+.dside{padding:24px;display:flex;flex-direction:column;justify-content:center}
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;justify-content:flex-end;z-index:200}.ov.on{display:flex}
-.drw{background:#fff;width:100%;max-width:340px;height:100%;padding:20px;display:flex;flex-direction:column}
-.ci{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eee}
-.pbtn{width:100%;padding:13px;background:#10b981;color:#fff;border:none;border-radius:8px;font-weight:700;font-size:16px;cursor:pointer;margin-top:10px}
-footer{background:#0f172a;color:#94a3b8;text-align:center;padding:24px;margin-top:30px}
+.drw{background:#fff;width:100%;max-width:350px;height:100%;padding:22px;display:flex;flex-direction:column}
+.ci{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #eee}
+.pbtn{width:100%;padding:14px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;border:none;border-radius:10px;font-weight:700;font-size:16px;cursor:pointer;margin-top:12px}
+footer{background:#0f172a;color:#94a3b8;text-align:center;padding:30px;margin-top:40px}
 @media(max-width:650px){.mbox{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="bar">🎉 GRAND OFFER: Click any product photo to view different colors & angles!</div>
+<div class="bar">✨ GRAND OFFER: Free Express Delivery + Extra 20% OFF Today!</div>
 <header>
   <div class="logo">SATYA STORE<span>.</span></div>
-  <input id="q" placeholder="🔍 Search products..." onkeyup="srch()">
+  <input id="q" placeholder="🔍 Search watches, headphones..." onkeyup="srch()">
   <button class="cbtn" onclick="tog()">🛒 Bag (<span id="cnt">0</span>)</button>
 </header>
-<div class="hero"><h1>Welcome to Satya Store</h1><p>Click any photo to explore multiple colors & details</p></div>
+<div class="hero"><h1>Welcome to Satya Store</h1><p>Tap on any product card to explore different colors & details</p></div>
 <div class="tabs">
-  <button class="tab on" onclick="flt('all',this)">All</button>
-  <button class="tab" onclick="flt('tech',this)">Tech</button>
-  <button class="tab" onclick="flt('fashion',this)">Fashion</button>
-  <button class="tab" onclick="flt('home',this)">Home</button>
+  <button class="tab on" onclick="flt('all',this)">All Products</button>
+  <button class="tab" onclick="flt('tech',this)">🎧 Tech</button>
+  <button class="tab" onclick="flt('fashion',this)">⌚ Fashion</button>
+  <button class="tab" onclick="flt('home',this)">🛋️ Home</button>
 </div>
 <div class="grid" id="g"></div>
 <div class="mbg" id="m" onclick="if(event.target===this)cls()">
   <div class="mbox">
     <button class="mcls" onclick="cls()">&times;</button>
-    <div class="gside"><img id="mp" class="mpic"><div class="thms" id="mt"></div></div>
-    <div class="dside"><span class="tag" id="mc"></span><h2 id="mn" style="margin:8px 0"></h2><div class="price" id="mpr"></div><p id="md" style="color:#64748b;font-size:14px;margin-bottom:15px"></p><button class="abtn" id="ma">+ Add to Bag</button></div>
+    <div class="gside">
+      <div class="mpic" id="mp"><span id="mi"></span><small id="ml"></small></div>
+      <div class="thms" id="mt"></div>
+    </div>
+    <div class="dside">
+      <span class="tag" id="mc"></span>
+      <h2 id="mn" style="margin:8px 0"></h2>
+      <div class="price" id="mpr"></div>
+      <p id="md" style="color:#64748b;font-size:14px;margin-bottom:16px"></p>
+      <button class="abtn" id="ma">+ Add to Bag</button>
+    </div>
   </div>
 </div>
 <div class="ov" id="ov">
   <div class="drw">
-    <div style="display:flex;justify-content:space-between;margin-bottom:15px"><h2>Your Bag</h2><button onclick="tog()" style="font-size:22px;border:none;background:none;cursor:pointer">&times;</button></div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:15px"><h2>Your Bag</h2><button onclick="tog()" style="font-size:24px;border:none;background:none;cursor:pointer">&times;</button></div>
     <div id="it" style="flex:1;overflow-y:auto"></div>
     <div style="border-top:1px solid #eee;padding-top:12px"><div style="display:flex;justify-content:space-between;font-size:18px;font-weight:800"><span>Total:</span><span>₹<span id="tot">0</span></span></div><button class="pbtn" onclick="pay()">Place Order →</button></div>
   </div>
 </div>
 <footer><h3 style="color:#fff">SATYA STORE.</h3><p>© 2026 Satya Store • Pan-India Delivery</p></footer>
 <script>
-function pic(bg,ico,lbl){return "data:image/svg+xml;utf8,"+encodeURIComponent('<svg xmlns="http://w3.org" width="500" height="400"><rect width="500" height="400" fill="'+bg+'"/><text x="50%" y="48%" font-size="120" text-anchor="middle" dominant-baseline="middle">'+ico+'</text><text x="50%" y="82%" font-family="sans-serif" font-size="22" font-weight="bold" fill="#1e293b" text-anchor="middle">'+lbl+'</text></svg>')}
 const P=[
-  {id:1,n:"Studio ANC Headphones",c:"tech",p:12999,o:15999,d:"19% OFF",ds:"Active noise-canceling headphones with 40hr battery.",imgs:[pic("#e0e7ff","🎧","Midnight Blue Edition"),pic("#fce7f3","🎧","Rose Pink Edition"),pic("#e2e8f0","🎧","Matte Silver Edition")]},
-  {id:2,n:"Royal Chronos Watch",c:"fashion",p:8499,o:10999,d:"23% OFF",ds:"Sapphire glass luxury watch with genuine leather strap.",imgs:[pic("#fef3c7","⌚","Classic Gold"),pic("#dbeafe","⌚","Ocean Blue Dial"),pic("#f1f5f9","⌚","Platinum Steel")]},
-  {id:3,n:"Ambient Smart Lamp",c:"home",p:3499,o:4499,d:"22% OFF",ds:"Minimalist warm LED desk lamp with touch brightness.",imgs:[pic("#dcfce7","🛋️","Warm Sunset Mode"),pic("#fef9c3","💡","Bright Study Mode"),pic("#e0f2fe","🌙","Cool Night Mode")]},
-  {id:4,n:"Pro Mechanical Keyboard",c:"tech",p:6999,o:8999,d:"22% OFF",ds:"Wireless mechanical keyboard with tactile switches.",imgs:[pic("#f3e8ff","⌨️","RGB Gaming Mode"),pic("#e2e8f0","⌨️","Office White Edition"),pic("#ffedd5","⌨️","Retro Keycaps")]},
-  {id:5,n:"Urban Travel Backpack",c:"fashion",p:4299,o:5499,d:"21% OFF",ds:"Water-resistant daily backpack with laptop sleeve.",imgs:[pic("#ffe4e6","🎒","Crimson Red"),pic("#dbeafe","🎒","Navy Explorer"),pic("#dcfce7","🎒","Olive Green")]},
-  {id:6,n:"Classic Aviator Glasses",c:"fashion",p:2499,o:3299,d:"24% OFF",ds:"UV400 polarized lenses with lightweight gold frame.",imgs:[pic("#fae8ff","🕶️","Gold Frame"),pic("#e0f2fe","🕶️","Blue Mirror Lens"),pic("#fef3c7","🕶️","Amber Tint")]}
+  {id:1,n:"Studio ANC Headphones",c:"tech",p:12999,o:15999,d:"19% OFF",ds:"Active noise-canceling wireless headphones with 40hr battery.",ico:"🎧",b1:"linear-gradient(135deg,#c7d2fe,#e0e7ff)",l1:"Midnight Blue",b2:"linear-gradient(135deg,#fbcfe8,#fce7f3)",l2:"Rose Pink",b3:"linear-gradient(135deg,#cbd5e1,#f1f5f9)",l3:"Matte Silver"},
+  {id:2,n:"Royal Chronos Watch",c:"fashion",p:8499,o:10999,d:"23% OFF",ds:"Sapphire glass stainless steel luxury watch.",ico:"⌚",b1:"linear-gradient(135deg,#fde68a,#fef3c7)",l1:"Classic Gold",b2:"linear-gradient(135deg,#bfdbfe,#dbeafe)",l2:"Ocean Blue",b3:"linear-gradient(135deg,#e2e8f0,#f8fafc)",l3:"Platinum Steel"},
+  {id:3,n:"Ambient Smart Lamp",c:"home",p:3499,o:4499,d:"22% OFF",ds:"Minimalist warm LED desk lamp with touch control.",ico:"🛋️",b1:"linear-gradient(135deg,#bbf7d0,#dcfce7)",l1:"Mint Glow",b2:"linear-gradient(135deg,#fef08a,#fef9c3)",l2:"Warm Sunset",b3:"linear-gradient(135deg,#bae6fd,#e0f2fe)",l3:"Cool Night"},
+  {id:4,n:"Pro Mechanical Keyboard",c:"tech",p:6999,o:8999,d:"22% OFF",ds:"Wireless mechanical keyboard with tactile switches.",ico:"⌨️",b1:"linear-gradient(135deg,#e9d5ff,#f3e8ff)",l1:"Purple RGB",b2:"linear-gradient(135deg,#fed7aa,#ffedd5)",l2:"Sunset Keys",b3:"linear-gradient(135deg,#cbd5e1,#f1f5f9)",l3:"Arctic White"},
+  {id:5,n:"Urban Travel Backpack",c:"fashion",p:4299,o:5499,d:"21% OFF",ds:"Water-resistant daily backpack with laptop sleeve.",ico:"🎒",b1:"linear-gradient(135deg,#fecdd3,#ffe4e6)",l1:"Crimson Red",b2:"linear-gradient(135deg,#bfdbfe,#dbeafe)",l2:"Navy Explorer",b3:"linear-gradient(135deg,#bbf7d0,#dcfce7)",l3:"Olive Green"},
+  {id:6,n:"Classic Aviator Glasses",c:"fashion",p:2499,o:3299,d:"24% OFF",ds:"UV400 polarized lenses with lightweight gold frame.",ico:"🕶️",b1:"linear-gradient(135deg,#f5d0fe,#fae8ff)",l1:"Gold Frame",b2:"linear-gradient(135deg,#bae6fd,#e0f2fe)",l2:"Blue Mirror",b3:"linear-gradient(135deg,#fde68a,#fef3c7)",l3:"Amber Tint"}
 ];
 let C=[];
 function show(L){
-  document.getElementById("g").innerHTML=L.map(x=>'<div class="card"><span class="off">'+x.d+'</span><div class="wrap" onclick="opn('+x.id+')"><img src="'+x.imgs[0]+'"><span class="hint">📷 +3 Colors</span></div><div class="info"><div class="tag">'+x.c+' • ⭐ 4.9</div><div class="title" onclick="opn('+x.id+')">'+x.n+'</div><div class="price">₹'+x.p.toLocaleString()+' <s>₹'+x.o.toLocaleString()+'</s></div><button class="abtn" onclick="add('+x.id+')">+ Add to Bag</button></div></div>').join("");
+document.getElementById("g").innerHTML=L.map(x=>''+x.d+'🤍'+x.ico+'✨ Tap for 3 Colors'+x.c+' • ⭐ 4.9'+x.n+'₹'+x.p.toLocaleString()+' ₹'+x.o.toLocaleString()+'+ Add to Bag').join("");
 }
 function opn(id){
-  let x=P.find(a=>a.id===id);
-  document.getElementById("mp").src=x.imgs[0];
-  document.getElementById("mc").innerText=x.c+" • ⭐ 4.9";
-  document.getElementById("mn").innerText=x.n;
-  document.getElementById("mpr").innerHTML="₹"+x.p.toLocaleString()+" <s>₹"+x.o.toLocaleString()+"</s>";
-  document.getElementById("md").innerText=x.ds;
-  document.getElementById("ma").onclick=function(){add(x.id);cls()};
-  document.getElementById("mt").innerHTML=x.imgs.map((s,i)=>'<img src="'+s+'" class="'+(i===0?'on':'')+'" onclick="sw(this,\''+s+'\')">').join("");
-  document.getElementById("m").classList.add("on");
+let x=P.find(a=>a.id===id);
+setCol(x.b1,x.ico,x.l1);
+document.getElementById("mc").innerText=x.c+" • ⭐ 4.9";
+document.getElementById("mn").innerText=x.n;
+document.getElementById("mpr").innerHTML="₹"+x.p.toLocaleString()+" ₹"+x.o.toLocaleString()+"";
+document.getElementById("md").innerText=x.ds;
+document.getElementById("ma").onclick=function(){add(x.id);cls()};
+document.getElementById("mt").innerHTML=''+x.ico+''+x.ico+''+x.ico+'';
+document.getElementById("m").classList.add("on");
 }
-function sw(el,s){document.getElementById("mp").src=s;document.querySelectorAll("#mt img").forEach(i=>i.classList.remove("on"));el.classList.add("on")}
+function setCol(bg,ico,lbl){document.getElementById("mp").style.background=bg;document.getElementById("mi").innerText=ico;document.getElementById("ml").innerText=lbl}
 function cls(){document.getElementById("m").classList.remove("on")}
 function flt(c,b){document.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));b.classList.add("on");show(c==="all"?P:P.filter(x=>x.c===c))}
 function srch(){let v=document.getElementById("q").value.toLowerCase();show(P.filter(x=>x.n.toLowerCase().includes(v)))}
 function add(id){C.push(P.find(x=>x.id===id));upd()}
 function rem(i){C.splice(i,1);upd()}
 function upd(){
-  document.getElementById("cnt").innerText=C.length;
-  document.getElementById("it").innerHTML=C.length?C.map((x,i)=>'<div class="ci"><div><b>'+x.n+'</b><br><small>₹'+x.p.toLocaleString()+'</small></div><button onclick="rem('+i+')" style="color:red;border:none;background:none;cursor:pointer">Remove</button></div>').join(""):"<p>Bag is empty</p>";
+document.getElementById("cnt").innerText=C.length;
+document.getElementById("it").innerHTML=C.length?C.map((x,i)=>''+x.ico+' '+x.n+'
+₹'+x.p.toLocaleString()+'Remove').join(""):"Bag is empty";
 document.getElementById("tot").innerText=C.reduce((a,b)=>a+b.p,0).toLocaleString();
 }
 function tog(){document.getElementById("ov").classList.toggle("on")}
 function pay(){if(!C.length)return alert("Bag is empty!");alert("🎉 Order Confirmed at SATYA STORE!\nTotal: ₹"+document.getElementById("tot").innerText);C=[];upd();tog()}
 show(P);
+

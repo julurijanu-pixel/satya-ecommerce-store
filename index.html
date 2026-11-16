@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AURA | Modern E-Commerce</title>
+  <title>SATYA STORE | Modern E-Commerce</title>
   <style>
     :root {
       --primary: #111827;
@@ -12,13 +12,11 @@
       --bg: #f9fafb;
       --card: #ffffff;
       --text: #1f2937;
-      --muted: #6b7280;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
     body { background: var(--bg); color: var(--text); }
 
-    /* Navbar */
     header {
       background: var(--card);
       padding: 1rem 5%;
@@ -43,11 +41,9 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      transition: 0.2s;
     }
     .cart-btn:hover { background: var(--accent); }
 
-    /* Hero Banner */
     .hero {
       background: linear-gradient(135deg, #111827 0%, #312e81 100%);
       color: white;
@@ -66,7 +62,6 @@
       display: inline-block;
     }
 
-    /* Filters */
     .filters {
       display: flex;
       justify-content: center;
@@ -81,7 +76,6 @@
       border-radius: 99px;
       cursor: pointer;
       font-weight: 500;
-      transition: 0.2s;
     }
     .filter-btn.active, .filter-btn:hover {
       background: var(--primary);
@@ -89,7 +83,6 @@
       border-color: var(--primary);
     }
 
-    /* Product Grid */
     .container { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
     .grid {
       display: grid;
@@ -100,13 +93,18 @@
       background: var(--card);
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-      transition: transform 0.2s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
       display: flex;
       flex-direction: column;
     }
-    .card:hover { transform: translateY(-5px); }
-    .card img { width: 100%; height: 220px; object-fit: cover; background: #e5e7eb; }
+    .card-img-box {
+      width: 100%;
+      height: 210px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4.5rem;
+    }
     .card-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; }
     .category-tag { font-size: 0.75rem; text-transform: uppercase; color: var(--accent); font-weight: 700; }
     .card-title { font-size: 1.1rem; margin: 0.4rem 0; font-weight: 600; }
@@ -121,11 +119,9 @@
       border-radius: 8px;
       font-weight: 600;
       cursor: pointer;
-      transition: 0.2s;
     }
     .add-btn:hover { background: var(--accent-hover); }
 
-    /* Slide-out Cart Drawer */
     .cart-overlay {
       position: fixed; inset: 0; background: rgba(0,0,0,0.5);
       display: none; justify-content: flex-end; z-index: 200;
@@ -148,15 +144,15 @@
 <body>
 
   <header>
-    <div class="logo">AURA<span>.</span></div>
+    <div class="logo">SATYA STORE<span>.</span></div>
     <button class="cart-btn" onclick="toggleCart()">
       🛒 Cart (<span id="cart-count">0</span>)
     </button>
   </header>
 
   <section class="hero">
-    <h1>Elevate Your Everyday Essentials</h1>
-    <p>Curated minimalist tech, lifestyle gear, and modern accessories built for performance.</p>
+    <h1>Welcome to Satya Store</h1>
+    <p>Curated minimalist tech, fashion, and home essentials delivered to your doorstep.</p>
     <a href="#products" class="hero-btn">Shop Collection</a>
   </section>
 
@@ -171,7 +167,6 @@
     <div class="grid" id="product-grid"></div>
   </main>
 
-  <!-- Cart Drawer -->
   <div class="cart-overlay" id="cart-overlay">
     <div class="cart-drawer">
       <div class="cart-header">
@@ -191,12 +186,12 @@
 
   <script>
     const products = [
-      { id: 1, name: "Noise-Canceling Headphones", category: "tech", price: 12999, img: "https://unsplash.com" },
-      { id: 2, name: "Minimalist Chronos Watch", category: "fashion", price: 8499, img: "https://unsplash.com" },
-      { id: 3, name: "Smart Ceramic Desk Lamp", category: "home", price: 3499, img: "https://unsplash.com" },
-      { id: 4, name: "Wireless Mechanical Keyboard", category: "tech", price: 6999, img: "https://unsplash.com" },
-      { id: 5, name: "Everyday Canvas Backpack", category: "fashion", price: 4299, img: "https://unsplash.com" },
-      { id: 6, name: "Matte Black Pour-Over Kettle", category: "home", price: 2799, img: "https://unsplash.com" }
+      { id: 1, name: "Noise-Canceling Headphones", category: "tech", price: 12999, icon: "🎧", bg: "linear-gradient(135deg, #e0e7ff, #c7d2fe)" },
+      { id: 2, name: "Minimalist Chronos Watch", category: "fashion", price: 8499, icon: "⌚", bg: "linear-gradient(135deg, #fef3c7, #fde68a)" },
+      { id: 3, name: "Smart Ceramic Desk Lamp", category: "home", price: 3499, icon: "🛋️", bg: "linear-gradient(135deg, #dcfce7, #bbf7d0)" },
+      { id: 4, name: "Wireless Mechanical Keyboard", category: "tech", price: 6999, icon: "⌨️", bg: "linear-gradient(135deg, #f3e8ff, #e9d5ff)" },
+      { id: 5, name: "Everyday Canvas Backpack", category: "fashion", price: 4299, icon: "🎒", bg: "linear-gradient(135deg, #ffe4e6, #fecdd3)" },
+      { id: 6, name: "Matte Black Pour-Over Kettle", category: "home", price: 2799, icon: "☕", bg: "linear-gradient(135deg, #e0f2fe, #bae6fd)" }
     ];
 
     let cart = [];
@@ -205,7 +200,7 @@
       const grid = document.getElementById("product-grid");
       grid.innerHTML = list.map(p => `
         <div class="card">
-          <img src="${p.img}" alt="${p.name}">
+          <div class="card-img-box" style="background: ${p.bg}">${p.icon}</div>
           <div class="card-body">
             <span class="category-tag">${p.category}</span>
             <h3 class="card-title">${p.name}</h3>
@@ -242,7 +237,7 @@
         : cart.map((item, idx) => `
             <div class="cart-item">
               <div>
-                <strong>${item.name}</strong><br>
+                <strong>${item.icon} ${item.name}</strong><br>
                 <small>₹${item.price.toLocaleString()}</small>
               </div>
               <button class="remove-btn" onclick="removeFromCart(${idx})">Remove</button>
@@ -259,7 +254,7 @@
 
     function checkout() {
       if (cart.length === 0) return alert("Your cart is empty!");
-      alert("Thank you for your order! Total: ₹" + document.getElementById("cart-total").innerText);
+      alert("Thank you for shopping at Satya Store! Total: ₹" + document.getElementById("cart-total").innerText);
       cart = [];
       updateCart();
       toggleCart();

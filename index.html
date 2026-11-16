@@ -1,149 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SATYA STORE | Elevate Your Everyday Essentials</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',system-ui,sans-serif}
-body{background:#f8fafc;color:#0f172a}
-header{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);padding:16px 6%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99;box-shadow:0 4px 20px rgba(0,0,0,.04)}
-.logo{font-size:24px;font-weight:900;letter-spacing:-0.5px;color:#0f172a}.logo span{color:#4f46e5}
-.cbtn{background:#0f172a;color:#fff;border:none;padding:10px 20px;border-radius:99px;cursor:pointer;font-weight:700;display:flex;align-items:center;gap:8px;transition:.2s}
-.cbtn:hover{background:#4f46e5;transform:translateY(-2px)}
-.hero{background:linear-gradient(135deg,#0f172a 0%,#312e81 100%);color:#fff;text-align:center;padding:65px 20px}
-.hero h1{font-size:38px;font-weight:800;margin-bottom:12px;letter-spacing:-0.5px}
-.hero p{color:#cbd5e1;max-width:560px;margin:0 auto 24px;font-size:16px;line-height:1.6}
-.hbtn{background:#4f46e5;color:#fff;padding:13px 30px;border-radius:10px;text-decoration:none;font-weight:700;display:inline-block;box-shadow:0 10px 25px rgba(79,70,229,.4);transition:.2s}
-.hbtn:hover{background:#4338ca;transform:translateY(-2px)}
-.tabs{display:flex;justify-content:center;gap:10px;padding:30px 15px 10px;flex-wrap:wrap}
-.tab{padding:9px 22px;border:1px solid #e2e8f0;background:#fff;border-radius:99px;cursor:pointer;font-weight:600;color:#475569;transition:.2s}
-.tab.on,.tab:hover{background:#0f172a;color:#fff;border-color:#0f172a}
-.grid{max-width:1150px;margin:0 auto;padding:24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
-.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 8px 25px rgba(0,0,0,.05);border:1px solid #f1f5f9;display:flex;flex-direction:column;transition:.3s;position:relative}
-.card:hover{transform:translateY(-8px);box-shadow:0 20px 35px rgba(15,23,42,.1)}
-.pic{height:210px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;position:relative}
-.pic .ico{font-size:80px;filter:drop-shadow(0 12px 18px rgba(0,0,0,.15));transition:.3s}
-.card:hover .pic .ico{transform:scale(1.1)}
-.pic small{position:absolute;bottom:10px;background:rgba(255,255,255,.85);padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;color:#334155}
-.info{padding:20px;flex:1;display:flex;flex-direction:column}
-.tag{font-size:11px;text-transform:uppercase;color:#4f46e5;font-weight:800;letter-spacing:.5px}
-.title{font-size:18px;font-weight:700;margin:6px 0 8px;color:#0f172a;cursor:pointer}
-.price{font-size:21px;font-weight:800;color:#0f172a;margin-bottom:16px}
-.abtn{margin-top:auto;width:100%;padding:12px;background:#4f46e5;color:#fff;border:none;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;transition:.2s}
-.abtn:hover{background:#3730a3}
-.mbg{position:fixed;inset:0;background:rgba(15,23,42,.75);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:300;padding:15px}.mbg.on{display:flex}
-.mbox{background:#fff;border-radius:20px;max-width:580px;width:100%;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;position:relative}
-.mcls{position:absolute;top:12px;right:14px;background:#f1f5f9;border:none;width:32px;height:32px;border-radius:50%;font-size:20px;cursor:pointer}
-.gside{padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#f8fafc}
-.mpic{width:100%;height:190px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:80px;margin-bottom:12px}
-.mpic small{font-size:12px;font-weight:700;background:rgba(255,255,255,.85);padding:3px 10px;border-radius:10px;margin-top:6px}
-.thms{display:flex;gap:8px}
-.thm{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;border:2px solid #cbd5e1}
-.dside{padding:24px;display:flex;flex-direction:column;justify-content:center}
-.ov{position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(3px);display:none;justify-content:flex-end;z-index:200}.ov.on{display:flex}
-.drw{background:#fff;width:100%;max-width:370px;height:100%;padding:24px;display:flex;flex-direction:column}
-.ci{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #f1f5f9}
-.pbtn{width:100%;padding:14px;background:#10b981;color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;margin-top:14px}
-footer{background:#0f172a;color:#94a3b8;text-align:center;padding:30px;margin-top:50px}
-@media(max-width:650px){.hero h1{font-size:28px}.mbox{grid-template-columns:1fr}}
-</style>
-</head>
-<body>
-<header>
-  <div class="logo">SATYA STORE<span>.</span></div>
-  <button class="cbtn" onclick="tog()">🛒 Cart (<span id="cnt">0</span>)</button>
-</header>
+      updateCart();
+    }
 
-<section class="hero">
-  <h1>Elevate Your Everyday Essentials</h1>
-  <p>Curated minimalist tech, lifestyle gear, and modern accessories built for performance.</p>
-  <a href="#products" class="hbtn">Shop Collection</a>
-</section>
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
 
-<div class="tabs" id="products">
-  <button class="tab on" onclick="flt('all',this)">All</button>
-  <button class="tab" onclick="flt('tech',this)">Tech</button>
-  <button class="tab" onclick="flt('fashion',this)">Fashion</button>
-  <button class="tab" onclick="flt('home',this)">Home</button>
-</div>
+    function updateCart() {
+      document.getElementById("cart-count").innerText = cart.length;
+      const itemsContainer = document.getElementById("cart-items");
+      itemsContainer.innerHTML = cart.length === 0
+        ? "<p style='color:#6b7280;'>Your cart is empty.</p>"
+        : cart.map((item, idx) => `
+            <div class="cart-item">
+              <div>
+                <strong>${item.icon} ${item.name}</strong><br>
+                <small>₹${item.price.toLocaleString()}</small>
+              </div>
+              <button class="remove-btn" onclick="removeFromCart(${idx})">Remove</button>
+            </div>
+          `).join("");
 
-<div class="grid" id="g"></div>
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      document.getElementById("cart-total").innerText = total.toLocaleString();
+    }
 
-<div class="mbg" id="m" onclick="if(event.target===this)cls()">
-  <div class="mbox">
-    <button class="mcls" onclick="cls()">&times;</button>
-    <div class="gside">
-      <div class="mpic" id="mp"><span id="mi"></span><small id="ml"></small></div>
-      <div class="thms" id="mt"></div>
-    </div>
-    <div class="dside">
-      <span class="tag" id="mc"></span>
-      <h2 id="mn" style="margin:8px 0;font-size:20px"></h2>
-      <div class="price" id="mpr"></div>
-      <p id="md" style="color:#64748b;font-size:13px;line-height:1.5;margin-bottom:16px"></p>
-      <button class="abtn" id="ma">Add to Cart</button>
-    </div>
-  </div>
-</div>
+    function toggleCart() {
+      document.getElementById("cart-overlay").classList.toggle("open");
+    }
 
-<div class="ov" id="ov">
-  <div class="drw">
-    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e2e8f0;padding-bottom:12px">
-      <h2>Your Cart</h2>
-      <button onclick="tog()" style="font-size:24px;border:none;background:none;cursor:pointer">&times;</button>
-    </div>
-    <div id="it" style="flex:1;overflow-y:auto;padding:10px 0"></div>
-    <div style="border-top:1px solid #e2e8f0;padding-top:14px">
-      <div style="display:flex;justify-content:space-between;font-size:18px;font-weight:800">
-        <span>Total:</span><span>₹<span id="tot">0</span></span>
-      </div>
-      <button class="pbtn" onclick="pay()">Proceed to Checkout</button>
-    </div>
-  </div>
-</div>
+    function checkout() {
+      if (cart.length === 0) return alert("Your cart is empty!");
+      alert("Thank you for shopping at Satya Store! Total: ₹" + document.getElementById("cart-total").innerText);
+      cart = [];
+      updateCart();
+      toggleCart();
+    }
 
-<footer>
-  <h3 style="color:#fff;margin-bottom:6px">SATYA STORE.</h3>
-  <p>© 2026 Satya Store • Minimalist Essentials</p>
-</footer>
-
-<script>
-const P=[
-  {id:1,n:"Noise-Canceling Headphones",c:"tech",p:12999,ico:"🎧",ds:"Active noise-canceling wireless over-ear headphones with 40-hour battery life.",b1:"linear-gradient(135deg,#e0e7ff,#c7d2fe)",l1:"Midnight Blue",b2:"linear-gradient(135deg,#fce7f3,#fbcfe8)",l2:"Rose Pink",b3:"linear-gradient(135deg,#f1f5f9,#cbd5e1)",l3:"Matte Silver"},
-  {id:2,n:"Minimalist Chronos Watch",c:"fashion",p:8499,ico:"⌚",ds:"Sapphire crystal stainless steel timepiece with genuine leather strap.",b1:"linear-gradient(135deg,#fef3c7,#fde68a)",l1:"Classic Gold",b2:"linear-gradient(135deg,#dbeafe,#bfdbfe)",l2:"Ocean Blue",b3:"linear-gradient(135deg,#f8fafc,#e2e8f0)",l3:"Platinum Steel"},
-  {id:3,n:"Smart Ceramic Desk Lamp",c:"home",p:3499,ico:"🛋️",ds:"Touch-dimmable warm ambient LED ceramic lamp for modern workspaces.",b1:"linear-gradient(135deg,#dcfce7,#bbf7d0)",l1:"Sage Green",b2:"linear-gradient(135deg,#fef9c3,#fef08a)",l2:"Warm Glow",b3:"linear-gradient(135deg,#e0f2fe,#bae6fd)",l3:"Ice Blue"},
-  {id:4,n:"Wireless Mechanical Keyboard",c:"tech",p:6999,ico:"⌨️",ds:"Compact 75% wireless mechanical keyboard with tactile switches.",b1:"linear-gradient(135deg,#f3e8ff,#e9d5ff)",l1:"Lavender Mist",b2:"linear-gradient(135deg,#ffedd5,#fed7aa)",l2:"Sunset Amber",b3:"linear-gradient(135deg,#f1f5f9,#cbd5e1)",l3:"Arctic White"},
-  {id:5,n:"Everyday Canvas Backpack",c:"fashion",p:4299,ico:"🎒",ds:"Water-resistant waxed canvas backpack with padded 16-inch laptop sleeve.",b1:"linear-gradient(135deg,#ffe4e6,#fecdd3)",l1:"Terracotta Red",b2:"linear-gradient(135deg,#dbeafe,#bfdbfe)",l2:"Navy Blue",b3:"linear-gradient(135deg,#dcfce7,#bbf7d0)",l3:"Olive Green"},
-  {id:6,n:"Matte Black Pour-Over Kettle",c:"home",p:2799,ico:"☕",ds:"Precision gooseneck stainless steel kettle for smooth pour-over coffee.",b1:"linear-gradient(135deg,#e0f2fe,#bae6fd)",l1:"Slate Blue",b2:"linear-gradient(135deg,#e2e8f0,#cbd5e1)",l2:"Matte Black",b3:"linear-gradient(135deg,#fef3c7,#fde68a)",l3:"Brushed Brass"}
-];
-let C=[];
-function show(L){
-  document.getElementById("g").innerHTML=L.map(x=>'<div class="card"><div class="pic" style="background:'+x.b1+'" onclick="opn('+x.id+')"><span class="ico">'+x.ico+'</span><small>Tap for 3 Colors</small></div><div class="info"><div class="tag">'+x.c+'</div><div class="title" onclick="opn('+x.id+')">'+x.n+'</div><div class="price">₹'+x.p.toLocaleString()+'</div><button class="abtn" onclick="add('+x.id+')">Add to Cart</button></div></div>').join("");
-}
-function opn(id){
-  let x=P.find(a=>a.id===id);
-  setCol(x.b1,x.ico,x.l1);
-  document.getElementById("mc").innerText=x.c;
-  document.getElementById("mn").innerText=x.n;
-  document.getElementById("mpr").innerText="₹"+x.p.toLocaleString();
-  document.getElementById("md").innerText=x.ds;
-document.getElementById("ma").onclick=function(){add(x.id);cls()};
-document.getElementById("mt").innerHTML=''+x.ico+''+x.ico+''+x.ico+'';
-document.getElementById("m").classList.add("on");
-}
-function setCol(bg,ico,lbl){document.getElementById("mp").style.background=bg;document.getElementById("mi").innerText=ico;document.getElementById("ml").innerText=lbl}
-function cls(){document.getElementById("m").classList.remove("on")}
-function flt(c,b){document.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));b.classList.add("on");show(c==="all"?P:P.filter(x=>x.c===c))}
-function add(id){C.push(P.find(x=>x.id===id));upd()}
-function rem(i){C.splice(i,1);upd()}
-function upd(){
-document.getElementById("cnt").innerText=C.length;
-document.getElementById("it").innerHTML=C.length?C.map((x,i)=>''+x.ico+' '+x.n+'
-₹'+x.p.toLocaleString()+'Remove').join(""):"Your cart is empty.";
-document.getElementById("tot").innerText=C.reduce((a,b)=>a+b.p,0).toLocaleString();
-}
-function tog(){document.getElementById("ov").classList.toggle("on")}
-function pay(){if(!C.length)return alert("Your cart is empty!");alert("Thank you for your order at Satya Store! Total: ₹"+document.getElementById("tot").innerText);C=[];upd();tog()}
-show(P);
-
-
+    renderProducts(products);
+  </script>
+</body>
+</html>
